@@ -29,7 +29,7 @@
  * - Type of temperature sensor
  * - Printer geometry
  * - Endstop configuration
- * - LCD 
+ * - LCD controller
  * - Extra features
  *
  * Advanced settings can be found in Configuration_adv.h
@@ -242,7 +242,7 @@
   #if ENABLED(AUTO_POWER_CONTROL)
     #define AUTO_POWER_FANS           // Turn on PSU if fans need power
     #define AUTO_POWER_E_FANS
-    #define AUTO_POWER_FAN
+    #define AUTO_POWER_CONTROLLERFAN
     #define POWER_TIMEOUT 30
   #endif
 
@@ -640,7 +640,7 @@
 /**
  * The "Manual Probe" provides a means to do "Auto" Bed Leveling without a probe.
  * Use G29 repeatedly, adjusting the Z height at each point with movement commands
- * or (with LCD_BED_LEVELING) the LCD .
+ * or (with LCD_BED_LEVELING) the LCD controller.
  */
 //#define PROBE_MANUALLY
 
@@ -902,7 +902,7 @@
  *   The result is a mesh, suitable for large or uneven beds. (See BILINEAR.)
  *   For machines without a probe, Mesh Bed Leveling provides a method to perform
  *   leveling in steps so you can manually adjust the Z height at each grid-point.
- *   With an LCD  the process is guided step-by-step.
+ *   With an LCD controller the process is guided step-by-step.
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
@@ -1027,7 +1027,7 @@
 #endif
 
 /**
- * Use the LCD  for bed leveling
+ * Use the LCD controller for bed leveling
  * Requires MESH_BED_LEVELING or PROBE_MANUALLY
  */
 //#define LCD_BED_LEVELING
@@ -1144,7 +1144,7 @@
 //
 // EEPROM
 //
-// The micro can store settings in the EEPROM, e.g. max velocity...
+// The microcontroller can store settings in the EEPROM, e.g. max velocity...
 // M500 - stores parameters in EEPROM
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
@@ -1333,10 +1333,10 @@
  *  - WESTERN  ... with more accented characters
  *  - CYRILLIC ... for the Russian language
  *
- * To determine the language extension installed on your :
+ * To determine the language extension installed on your controller:
  *
  *  - Compile and upload with LCD_LANGUAGE set to 'test'
- *  - Click the  to view the LCD menu
+ *  - Click the controller to view the LCD menu
  *  - The LCD will display Japanese, Western, or Cyrillic text
  *
  * See http://marlinfw.org/docs/development/lcd_language.html
@@ -1361,7 +1361,7 @@
 /**
  * SD CARD
  *
- * SD Card support is disabled by default. If your  has an SD slot,
+ * SD Card support is disabled by default. If your controller has an SD slot,
  * you must uncomment the following option or it won't work.
  *
  */
@@ -1449,16 +1449,16 @@
 //#define LCD_FEEDBACK_FREQUENCY_HZ 5000
 
 //
-//  TYPE: Standard
+// CONTROLLER TYPE: Standard
 //
-// Marlin supports a wide variety of s.
-// Enable one of the following options to specify your .
+// Marlin supports a wide variety of controllers.
+// Enable one of the following options to specify your controller.
 //
 
 //
-// ULTIMAKER .
+// ULTIMAKER Controller.
 //
-//#define ULTIMAKER
+//#define ULTIMAKERCONTROLLER
 
 //
 // ULTIPANEL as seen on Thingiverse.
@@ -1473,7 +1473,7 @@
 //#define PANEL_ONE
 
 //
-// MaKr3d Makr-Panel with graphic  and SD support.
+// MaKr3d Makr-Panel with graphic controller and SD support.
 // http://reprap.org/wiki/MaKr3d_MaKrPanel
 //
 //#define MAKRPANEL
@@ -1493,21 +1493,21 @@
 //#define miniVIKI
 
 //
-// Adafruit ST7565 Full Graphic .
-// https://github.com/eboston/Adafruit-ST7565-Full-Graphic-/
+// Adafruit ST7565 Full Graphic Controller.
+// https://github.com/eboston/Adafruit-ST7565-Full-Graphic-Controller/
 //
-//#define ELB_FULL_GRAPHIC_
+//#define ELB_FULL_GRAPHIC_CONTROLLER
 
 //
-// RepRapDiscount Smart .
-// http://reprap.org/wiki/RepRapDiscount_Smart_
+// RepRapDiscount Smart Controller.
+// http://reprap.org/wiki/RepRapDiscount_Smart_Controller
 //
 // Note: Usually sold with a white PCB.
 //
-//#define REPRAP_DISCOUNT_SMART_
+//#define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
-// GADGETS3D G3D LCD/SD 
+// GADGETS3D G3D LCD/SD Controller
 // http://reprap.org/wiki/RAMPS_1.3/1.4_GADGETS3D_Shield_with_Panel
 //
 // Note: Usually sold with a blue PCB.
@@ -1515,14 +1515,14 @@
 //#define G3D_PANEL
 
 //
-// RepRapDiscount FULL GRAPHIC Smart 
-// http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_
+// RepRapDiscount FULL GRAPHIC Smart Controller
+// http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_
+//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // MakerLab Mini Panel with graphic
-//  and SD support - http://reprap.org/wiki/Mini_panel
+// controller and SD support - http://reprap.org/wiki/Mini_panel
 //
 //#define MINIPANEL
 
@@ -1543,10 +1543,10 @@
 //#define RIGIDBOT_PANEL
 
 //
-// BQ LCD Smart  shipped by
+// BQ LCD Smart Controller shipped by
 // default with the BQ Hephestos 2 and Witbox 2.
 //
-//#define BQ_LCD_SMART_
+//#define BQ_LCD_SMART_CONTROLLER
 
 //
 // Cartesio UI
@@ -1555,7 +1555,7 @@
 //#define CARTESIO_UI
 
 //
-// ANET and Tronxy  supported displays.
+// ANET and Tronxy Controller supported displays.
 //
 //#define ZONESTAR_LCD            // Requires ADC_KEYPAD_PIN to be assigned to an analog pin.
                                   // This LCD is known to be susceptible to electrical interference
@@ -1578,9 +1578,9 @@
 //#define MALYAN_LCD
 
 //
-//  TYPE: I2C
+// CONTROLLER TYPE: I2C
 //
-// Note: These s require the installation of Arduino's LiquidCrystal_I2C
+// Note: These controllers require the installation of Arduino's LiquidCrystal_I2C
 // library. For more info: https://github.com/kiyoshigawa/LiquidCrystal_I2C
 //
 
@@ -1608,7 +1608,7 @@
 // PANELOLU2 LCD with status LEDs,
 // separate encoder and click inputs.
 //
-// Note: This  requires Arduino's LiquidTWI2 library v1.2.3 or later.
+// Note: This controller requires Arduino's LiquidTWI2 library v1.2.3 or later.
 // For more info: https://github.com/lincomatic/LiquidTWI2
 //
 // Note: The PANELOLU2 encoder click input can either be directly connected to
@@ -1637,13 +1637,13 @@
 #endif
 
 //
-// Original Ulti from Ultimaker 2 printer with SSD1309 I2C display and encoder
-// https://github.com/Ultimaker/Ultimaker2/tree/master/1249_Ulti_Board_(x1)
+// Original Ulticontroller from Ultimaker 2 printer with SSD1309 I2C display and encoder
+// https://github.com/Ultimaker/Ultimaker2/tree/master/1249_Ulticontroller_Board_(x1)
 //
-//#define ULTI_
+//#define ULTI_CONTROLLER
 
 //
-//  TYPE: Shift register panels
+// CONTROLLER TYPE: Shift register panels
 //
 // 2 wire Non-latching LCD SR from https://goo.gl/aJJ4sH
 // LCD configuration: http://reprap.org/wiki/SAV_3D_LCD
@@ -1656,13 +1656,13 @@
 //#define OLED_PANEL_TINYBOY2
 
 //
-// Makeboard 3D Printer Parts 3D Printer Mini Display 1602 Mini 
-// https://www.aliexpress.com/item/Micromake-Makeboard-3D-Printer-Parts-3D-Printer-Mini-Display-1602-Mini--Compatible-with-Ramps-1/32765887917.html
+// Makeboard 3D Printer Parts 3D Printer Mini Display 1602 Mini Controller
+// https://www.aliexpress.com/item/Micromake-Makeboard-3D-Printer-Parts-3D-Printer-Mini-Display-1602-Mini-Controller-Compatible-with-Ramps-1/32765887917.html
 //
 //#define MAKEBOARD_MINI_2_LINE_DISPLAY_1602
 
 //
-// MKS MINI12864 with graphic  and SD support
+// MKS MINI12864 with graphic controller and SD support
 // http://reprap.org/wiki/MKS_MINI_12864
 //
 //#define MKS_MINI_12864
@@ -1677,19 +1677,19 @@
 //#define CR10_STOCKDISPLAY
 
 //
-// MKS OLED 1.3" 128 × 64 FULL GRAPHICS 
+// MKS OLED 1.3" 128 × 64 FULL GRAPHICS CONTROLLER
 // http://reprap.org/wiki/MKS_12864OLED
 //
 // Tiny, but very sharp OLED display
 //
-//#define MKS_12864OLED          // Uses the SH1106  (default)
-//#define MKS_12864OLED_SSD1306  // Uses the SSD1306 
+//#define MKS_12864OLED          // Uses the SH1106 controller (default)
+//#define MKS_12864OLED_SSD1306  // Uses the SSD1306 controller
 
 //
-// Silvergate GLCD 
+// Silvergate GLCD controller
 // http://github.com/android444/Silvergate
 //
-//#define SILVER_GATE_GLCD_
+//#define SILVER_GATE_GLCD_CONTROLLER
 
 //=============================================================================
 //=============================== Extra Features ==============================
