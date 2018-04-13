@@ -13499,11 +13499,23 @@ void prepare_move_to_destination() {
 
       // Fan off if no steppers have been enabled for CONTROLLERFAN_SECS seconds
       const uint8_t speed = (lastMotorOn && PENDING(ms, lastMotorOn + (CONTROLLERFAN_SECS) * 1000UL)) ? CONTROLLERFAN_SPEED : 0;
-      controllerFanSpeed = speed;
+      
+      if(controllerFanSpeed != speed){
+        controllerFanSpeed = speed;
+        // allows digital or PWM fan output to be used (see M42 handling)
+        WRITE(CONTROLLER_FAN_PIN, speed);
+        analogWrite(CONTROLLER_FAN_PIN, speed);
 
-      // allows digital or PWM fan output to be used (see M42 handling)
-      WRITE(CONTROLLER_FAN_PIN, speed);
-      analogWrite(CONTROLLER_FAN_PIN, speed);
+        #if PIN_EXISTS(FAN1)
+          fanSpeeds[1]  = (lastMotorOn && PENDING(ms, lastMotorOn + (CONTROLLERFAN_SECS) * 1000UL)) ? new_fanSpeeds[1] ? new_fanSpeeds[1] : CONTROLLERFAN_SPEED : 0;
+        #endif
+
+        #if PIN_EXISTS(FAN2)
+          fanSpeeds[2]  = (lastMotorOn && PENDING(ms, lastMotorOn + (CONTROLLERFAN_SECS) * 1000UL)) ? new_fanSpeeds[2] ? new_fanSpeeds[2] : CONTROLLERFAN_SPEED : 0;
+        #endif
+      }
+
+
     }
   }
 

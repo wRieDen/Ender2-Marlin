@@ -209,7 +209,8 @@
 #else
   // for regular DOGM128 display with HW-SPI
   //U8GLIB_DOGM128 u8g(DOGLCD_CS, DOGLCD_A0);  // HW-SPI Com: CS, A0  // 8 stripes
-  U8GLIB_DOGM128_2X u8g(DOGLCD_CS, DOGLCD_A0);  // HW-SPI Com: CS, A0 // 4 stripes
+  //U8GLIB_DOGM128_2X u8g(DOGLCD_CS, DOGLCD_A0);  // HW-SPI Com: CS, A0 // 4 stripes
+  U8GLIB_NHD_C12864 u8g(DOGLCD_CS, DOGLCD_A0);
 #endif
 
 #ifndef LCD_PIXEL_WIDTH
