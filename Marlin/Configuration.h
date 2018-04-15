@@ -1464,7 +1464,6 @@
 // ULTIPANEL as seen on Thingiverse.
 //
 #define ULTIPANEL
-//#define DEFAULT_LCD_CONTRAST 0
 
 //
 // PanelOne from T3P3 (via RAMPS 1.4 AUX2/AUX3)
