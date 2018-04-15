@@ -371,9 +371,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #define DEFAULT_Kp 19.19
-  #define DEFAULT_Ki 1.45
-  #define DEFAULT_Kd 63.66
+  #define DEFAULT_Kp 20.97
+  #define DEFAULT_Ki 1.53
+  #define DEFAULT_Kd 71.73
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -422,9 +422,9 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 690.34
-  #define DEFAULT_bedKi 111.47
-  #define DEFAULT_bedKd 1068.83 
+  #define DEFAULT_bedKp 170.79
+  #define DEFAULT_bedKi 33.64
+  #define DEFAULT_bedKd 216.77 
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -1030,7 +1030,7 @@
  * Use the LCD controller for bed leveling
  * Requires MESH_BED_LEVELING or PROBE_MANUALLY
  */
-#define LCD_BED_LEVELING
+//#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MBL_Z_STEP 0.025    // Step size while manually probing Z axis.
